@@ -25,7 +25,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         }
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[.editedImage] as? UIImage{
+        if let pickedImage = info[.originalImage] as? UIImage{
             backImageView.image = pickedImage
             picker.dismiss(animated: true, completion: nil)
         }
@@ -64,12 +64,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     @IBAction func share(_ sender: Any) {
         
         let text = ""
-        let url = NSURL(string: "https://beautydatsumo.com")
-        let items = [text, url!, backImageView.image!] as [Any]
+        let url = NSURL(string: "http://www.apple.com")
         
-        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        let items = [text,url,backImageView.image] as [Any]
+        
+        let activityVC = UIActivityViewController(activityItems:items , applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
-        
     }
+    
 }
 
